@@ -4,5 +4,8 @@
   </div>
   <div style="margin-left:16px;">
     <app-text [text]="todo?.task" [options]="done ? ['line-throught'] : []" size="p-6"></app-text>
+    <div class="label" [style.background]="todo?.color">
+      <app-text [text]="todo?.assign" size="p-1" color="white"></app-text>
+    </div>
   </div>
 </div>

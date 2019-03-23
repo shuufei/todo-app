@@ -10,11 +10,24 @@ import { StoreService, Todo, State } from './store.service';
 })
 export class AppComponent implements OnInit {
 
+  readonly COLOR = [
+    '#F2994A', '#27AE60', '#FDCA40'
+  ];
+
   title = 'todo';
   todos: Todo[];
+  initialized: boolean;
+  typing: boolean;
 
   constructor(private ss: StoreService) {
     this.todos = [];
+    this.initialized = false;
+    const name = window.localStorage.getItem('name');
+    this.initialized = name ? true : false;
+    this.typing = false;
+    setInterval(() => {
+      this.typing = (window.innerHeight < 390);
+    }, 100);
   }
 
   ngOnInit(): void {
@@ -23,13 +36,13 @@ export class AppComponent implements OnInit {
       this.todos = state.todos.filter(t => !t.done);
     });
 
-    // for debug
-    const todos: Todo[] = [
-      { id: uuidv4(), task: '牛乳を買う', done: false },
-      { id: uuidv4(), task: '防カビくんやる', done: false },
-      { id: uuidv4(), task: 'トイレ掃除', done: false }
-    ];
-    todos.forEach(t => this.pushTodo(t));
+    // // for debug
+    // const todos: Todo[] = [
+    //   { id: uuidv4(), task: '牛乳を買う', done: false },
+    //   { id: uuidv4(), task: '防カビくんやる', done: false },
+    //   { id: uuidv4(), task: 'トイレ掃除', done: false }
+    // ];
+    // todos.forEach(t => this.pushTodo(t));
   }
 
   pushTodo(todo: Todo) {
@@ -37,5 +50,13 @@ export class AppComponent implements OnInit {
       todo = { id: uuidv4(), task: 'dummy task', done: false };
     }
     this.ss.addTodo(todo);
+  }
+
+  changeName(name: string) {
+    if (name) {
+      window.localStorage.setItem('name', name);
+      window.localStorage.setItem('color', this.COLOR[Math.floor(Math.random() * (this.COLOR.length - 0) + 0)]);
+      this.initialized = true;
+    }
   }
 }

@@ -25,6 +25,9 @@ export class StoreService {
 
   addTodo(todo: Todo) {
     const { todos } = this.state;
+    const assign = window.localStorage.getItem('name');
+    const color = window.localStorage.getItem('color');
+    Object.assign(todo, {assign, color});
     todos.push(todo);
     this.commit();
   }
@@ -32,6 +35,10 @@ export class StoreService {
   doneTodo(id: string, done: boolean) {
     const todo = this.state.todos.find(t => t.id === id);
     todo.done = done;
+    const assign = window.localStorage.getItem('name');
+    const color = window.localStorage.getItem('color');
+    todo.assign = assign;
+    todo.color = color;
     this.commit();
   }
 }
@@ -44,4 +51,6 @@ export interface Todo {
   id: string;
   task: string;
   done: boolean;
+  assign?: string;
+  color?: string;
 }

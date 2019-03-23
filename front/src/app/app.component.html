@@ -14,10 +14,23 @@
       <img src='/assets/empty-illust.svg' alt=''>
     </div>
   </ng-template>
+
+  <div *ngIf="!initialized" class="overlay"></div>
   
   <!-- <app-add-todo></app-add-todo>
   <app-text [text]="'test message'"></app-text>
   <button (click)="pushTodo()">push</button> -->
-  <app-input-text-modal></app-input-text-modal>
-  <app-footer></app-footer>
+  <div style="position:fixed;" [style.bottom]="typing ? '0' : '55px'">
+    <ng-container *ngIf="initialized; else setName">
+      <app-input-text-modal [mode]="'task'"></app-input-text-modal>
+    </ng-container>
+    <ng-template #setName>
+      <app-input-text-modal [mode]="'name'" (changeName)="changeName($event)"></app-input-text-modal>
+    </ng-template>
+  </div>
+  <ng-container *ngIf="!typing">
+    <div style="position:fixed; bottom:0;">
+      <app-footer></app-footer>
+    </div>
+  </ng-container>
 </div>
