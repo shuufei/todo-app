@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { StoreService, Todo } from 'src/app/store.service';
 
 @Component({
   selector: 'app-todo',
@@ -6,10 +8,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent implements OnInit {
+  @Input() todo: Todo;
 
-  constructor() { }
+  readonly DONE_ANIMATION_DURATION = 450;
 
-  ngOnInit() {
+  done: boolean;
+
+  constructor(private ss: StoreService) {
+    this.done = false;
   }
 
+  ngOnInit() {
+    this.done = this.todo.done;
+  }
+
+  changeDone() {
+    // this.done = this.todo.done;
+    this.done = !this.done;
+    if (this.done) {
+      setTimeout(() => {
+        this.ss.doneTodo(this.todo.id, this.done);
+      }, this.DONE_ANIMATION_DURATION + 100);
+    } else {
+      this.ss.doneTodo(this.todo.id, this.done);
+    }
+  }
 }

@@ -6,20 +6,28 @@
 }
 
 .header {
-  display: fixed;
+  position: fixed;
   width: 100vw;
   top: 0;
   height: 64.5px;
-  background: #F8F8F8;
-  border-bottom: solid 0.5px rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0);
+  // border-bottom: solid 0.5px rgba(0,0,0,0.3);
   display: flex;
   justify-content: center;
   align-items: center;
-  // text-align: center;
 }
 
 .todo-list {
+  margin-top: 32px;
   box-sizing: border-box;
   width: 100vw;
   padding: 16px;
+  padding-bottom: 190px;
+}
+
+.empty-wrapper {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  padding-top: 190px;
 }

@@ -1,11 +1,23 @@
 <div id="main-page">
   <header class="header">
-    <app-text size="p-7" weight="bold" text="全てのタスク"></app-text>
+    <app-text size="p-7" weight="bold" text="全てのTODO"></app-text>
   </header>
-  <div class="todo-list">
-    <app-todo></app-todo>
-  </div>
-  <app-add-todo></app-add-todo>
+  <ng-container *ngIf="todos && 0 < todos.length; else empty">
+    <div class="todo-list">
+      <ng-container *ngFor="let todo of todos">
+        <app-todo [todo]="todo"></app-todo>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-template #empty>
+    <div class="empty-wrapper">
+      <img src='/assets/empty-illust.svg' alt=''>
+    </div>
+  </ng-template>
+  
+  <!-- <app-add-todo></app-add-todo>
   <app-text [text]="'test message'"></app-text>
-  <button (click)="pushTodo()">push</button>
+  <button (click)="pushTodo()">push</button> -->
+  <app-input-text-modal></app-input-text-modal>
+  <app-footer></app-footer>
 </div>

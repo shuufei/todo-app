@@ -5,6 +5,29 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.15);
   border-radius: 6px;
   display: flex;
+  margin-top: 16px;
   padding: 20px 16px;
+  align-items: center;
+  overflow: hidden;
+  &.done {
+    animation: done 150ms 300ms ease-out forwards;
+  }
+}
+
+@keyframes done {
+  0% {
+  }
+  100% {
+    margin-top: 0;
+    height: 0;
+    padding: 0 16px;
+  }
+}
+
+.icon-wrapper {
+  height: 18px;
+  width: 18px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }

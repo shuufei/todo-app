@@ -28,6 +28,12 @@ export class StoreService {
     todos.push(todo);
     this.commit();
   }
+
+  doneTodo(id: string, done: boolean) {
+    const todo = this.state.todos.find(t => t.id === id);
+    todo.done = done;
+    this.commit();
+  }
 }
 
 export interface State {
@@ -35,6 +41,7 @@ export interface State {
 }
 
 export interface Todo {
+  id: string;
   task: string;
   done: boolean;
 }
