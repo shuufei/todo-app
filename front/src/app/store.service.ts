@@ -3,6 +3,15 @@ import { map } from 'rxjs/operators';
 import * as io from 'socket.io-client';
 
 import { Subject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    Authorization: 'my-auth-token'
+  })
+};
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +26,7 @@ export class StoreService {
 
   socket;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.stateSubject = new Subject();
     this.state$ = this.stateSubject.asObservable();
     this.state = {
@@ -39,6 +48,7 @@ export class StoreService {
     todos.push(todo);
     this.sendTodos();
     this.commit();
+    this.notifyToLine(todo, '追加');
   }
 
   doneTodo(id: string, done: boolean) {
@@ -50,14 +60,15 @@ export class StoreService {
     todo.color = color;
     this.sendTodos();
     this.commit();
+    this.notifyToLine(todo, '完了');
   }
 
   sendTodos() {
-    this.sendMessage(JSON.stringify({todos: this.state.todos}));
+    // this.sendMessage(JSON.stringify({todos: this.state.todos}));
   }
 
   sendMessage(msg: string) {
-    this.socket.emit(this.SOCKET_KEY, msg);
+    // this.socket.emit(this.SOCKET_KEY, msg);
   }
 
   setTodos(todos: Todo[]) {
@@ -66,18 +77,39 @@ export class StoreService {
   }
 
   connect() {
-    this.socket = io('ws://54.213.172.232:7000');
-    this.socket.on(this.SOCKET_KEY, (data) => {
-      try {
-        const d = JSON.parse(data);
-        const todos = d.todos;
-        if (todos) {
-          this.setTodos(todos);
-        }
-      } catch (error) {
-      }
-    });
+    // this.socket = io('ws://54.213.172.232:7000');
+    // this.socket.on(this.SOCKET_KEY, (data) => {
+    //   try {
+    //     const d = JSON.parse(data);
+    //     const todos = d.todos;
+    //     if (todos) {
+    //       this.setTodos(todos);
+    //     }
+    //   } catch (error) {
+    //   }
+    // });
   }
+
+  /** POST: add a new hero to the database */
+  notifyToLine(todo: Todo, action: string): void {
+    // console.log(todo);
+
+    // const assginedName = todo.assign;
+    // const taskName = todo.task;
+
+    // const url =
+    // 'https://maker.ifttt.com/trigger/ore_no_todo_event/with/key/cSLKN7Ndi0gf10vGsDT7A6?' +
+    // `value1=${assginedName}&value2=${taskName}&value3=${action}`;
+    // console.log(url);
+
+    // const httpObj = this.http.get(url)
+    //   .subscribe(response => {
+    //     console.log('OK');
+    //   }, error => {
+    //     console.log(error);
+    // });
+  }
+
 }
 
 export interface State {
