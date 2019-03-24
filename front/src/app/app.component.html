@@ -20,7 +20,7 @@
   <!-- <app-add-todo></app-add-todo>
   <app-text [text]="'test message'"></app-text>
   <button (click)="pushTodo()">push</button> -->
-  <div style="position:fixed;" [style.bottom]="typing ? '0' : '55px'" class="input-and-footer">
+  <div *ngIf="!completeDialogShow" style="position:fixed;" [style.bottom]="typing ? '0' : '55px'" class="input-and-footer">
     <ng-container *ngIf="initialized; else setName">
       <app-input-text-modal [mode]="'task'"></app-input-text-modal>
     </ng-container>
@@ -28,10 +28,13 @@
       <app-input-text-modal [mode]="'name'" (changeName)="changeName($event)"></app-input-text-modal>
     </ng-template>
   </div>
-  <ng-container *ngIf="!typing">
+  <ng-container *ngIf="!typing && !completeDialogShow">
     <div style="position:fixed; bottom:0;" class="input-and-footer">
       <app-footer></app-footer>
     </div>
   </ng-container>
   <app-todo-detail-modal [open]="editTarget ? true : false" [todo]="editTarget" (close)="closeDetail()"></app-todo-detail-modal>
+  <!-- <ng-container *ngIf="completeDialogShow">
+  </ng-container> -->
+  <app-complet [open]="completeDialogShow"></app-complet>
 </div>

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+// import { SocketIoModule, SocketIoConfig } from 'ng6-socket-io';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { FooterComponent } from './components/fotter/footer.component';
 import { TodoDetailModalComponent } from './components/todo-detail-modal/todo-detail-modal.component';
 import { CompletComponent } from './components/complet/complet.component';
 import { ShareComponent } from './components/share/share.component';
+
+// const config: SocketIoConfig = { url: 'http://localhost:7000', options: {} };
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import { ShareComponent } from './components/share/share.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
+    // SocketIoModule.forRoot(config),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],

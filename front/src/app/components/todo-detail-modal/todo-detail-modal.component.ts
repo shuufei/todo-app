@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
-
 import { trigger, state, style, animate, transition } from '@angular/animations';
+
 import { Todo } from 'src/app/store.service';
 
 @Component({

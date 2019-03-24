@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   initialized: boolean;
   typing: boolean;
   editTarget: Todo;
+  completeDialogShow: boolean;
 
   constructor(private ss: StoreService) {
     this.todos = [];
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
     this.initialized = name ? true : false;
     this.typing = false;
     this.editTarget = null;
+    this.completeDialogShow = false;
     setInterval(() => {
       this.typing = (window.innerHeight < 390);
     }, 100);
@@ -59,6 +61,10 @@ export class AppComponent implements OnInit {
       window.localStorage.setItem('name', name);
       window.localStorage.setItem('color', this.COLOR[Math.floor(Math.random() * (this.COLOR.length - 0) + 0)]);
       this.initialized = true;
+      this.completeDialogShow = true;
+      setTimeout(() => {
+        this.completeDialogShow = false;
+      }, 2000);
     }
   }
 
