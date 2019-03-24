@@ -1,3 +1,13 @@
+## Localでの動作手順
+
+1. 下記の手順を参考にnodeのv10.7.0をインストールする  
+    https://qiita.com/yn-misaki/items/e92a47c662ea6d1236c1
+1. todo/front直下で`npm install`を実行
+1. todo/front直下で`npm run start`を実行
+1. ブラウザで`http://localhost:4200`にアクセス
+
+
+
 # Todo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
