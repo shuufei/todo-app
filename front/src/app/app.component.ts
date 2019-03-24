@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   todos: Todo[];
   initialized: boolean;
   typing: boolean;
+  editTarget: Todo;
 
   constructor(private ss: StoreService) {
     this.todos = [];
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit {
     const name = window.localStorage.getItem('name');
     this.initialized = name ? true : false;
     this.typing = false;
+    this.editTarget = null;
     setInterval(() => {
       this.typing = (window.innerHeight < 390);
     }, 100);
@@ -58,5 +60,13 @@ export class AppComponent implements OnInit {
       window.localStorage.setItem('color', this.COLOR[Math.floor(Math.random() * (this.COLOR.length - 0) + 0)]);
       this.initialized = true;
     }
+  }
+
+  showDetail(todo: Todo) {
+    this.editTarget = todo;
+  }
+
+  closeDetail() {
+    this.editTarget = null;
   }
 }

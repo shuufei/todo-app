@@ -1,0 +1,26 @@
+<div [@detailModal] *ngIf="open" class="todo-detail-modal">
+  <div class="content-wrapper">
+    <div class="task-input-wrapper">
+      <input id="task-input-id" type='text' class="task-input" [ngModel]="todo?.task">
+    </div>
+    <div class="detail-wrapper">
+      <div class="edit-item">
+        <img src='/assets/icons/calendar.svg' alt='' style="margin-right:16px;">
+        <app-text text="期限を設定" size="p-4" color="gray-02"></app-text>
+      </div>
+      <div class="edit-item">
+        <img src='/assets/icons/memo.svg' alt='' style="margin-right:16px;">
+        <app-text text="メモを追加" size="p-4" color="gray-02"></app-text>
+      </div>
+      <div class="edit-item">
+        <img src='/assets/icons/account.svg' alt='' style="margin-right:16px;">
+        <div class="label" [style.background]="todo?.color">
+          <app-text [text]="todo?.assign" size="p-1" color="white"></app-text>
+        </div>
+      </div>
+    </div>
+    <button class="action-btn done-btn" (click)="close.emit()">完了</button>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="open" (click)="close.emit()"></div>

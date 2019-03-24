@@ -1,0 +1,35 @@
+@import '~src/styles.scss';
+
+.overlay {
+    background: rgba(0,0,0,0.54);
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center; /*左右中央揃え*/
+    align-items: center;     /*上下中央揃え*/
+}
+  
+.popup {
+    height: 274px;
+    width: 315px;
+    text-align: center;    
+    background-color: rgba(#FFFFFF, 1.0);
+    border-radius: 10px;    
+}
+
+.popup_message {
+    margin-top: 40px;
+}
+
+.popup_icon {
+    margin-top: 15px;
+    width: 120px;
+    height: 120px;
+}
+
+.popup_text{
+    margin-bottom: 20px;
+}

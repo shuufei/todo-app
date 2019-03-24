@@ -1,0 +1,56 @@
+@import '~src/styles.scss';
+
+.todo-detail-modal {
+  position: fixed;
+  bottom: 0;
+  height: 300px;
+  width: 100vw;
+  background: #fff;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  z-index: $zi-detail-modal;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.16);
+}
+
+.content-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.done-btn {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+}
+
+.task-input {
+  width: 100%;
+  border: none;
+  font-size: 18px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.task-input-wrapper {
+  width: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+  border-bottom: solid 1px rgba(4,4,15,0.12);
+}
+
+.detail-wrapper {
+  position: relative;
+  padding: 24px;
+  // height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.edit-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}

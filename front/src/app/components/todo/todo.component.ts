@@ -22,7 +22,9 @@ export class TodoComponent implements OnInit {
     this.done = this.todo.done;
   }
 
-  changeDone() {
+  changeDone(event) {
+    event.preventDefault();
+    event.stopPropagation();
     // this.done = this.todo.done;
     this.done = !this.done;
     if (this.done) {

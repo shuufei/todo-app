@@ -1,3 +1,4 @@
+@import '~src/styles.scss';
 
 #main-page {
   height: 100vh;
@@ -39,5 +40,9 @@
   width: 100vw;
   top: 0;
   left: 0;
+  z-index: $zi-overlay;
 }
 
+.input-and-footer {
+  z-index: $zi-input-task;
+}
